@@ -1,0 +1,210 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+request.setCharacterEncoding("UTF-8");
+%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="<%=basePath %>static/css/stylesheet.css">
+    <style>
+        .table .table-cell-box ul.three li { font-size: 14px; }
+    </style>
+</head>
+
+<body>
+
+    <div class="table">
+        <div class="table-cell">
+            <div class="table-cell-title"></div>
+            <h3>学生信息审核</h3>
+            <div class="table-cell-box">
+                <div class="table-cell-box-title">
+                    <h3>基本信息</h3>
+                </div>
+                <table>
+                    <tr>
+                        <!-- <td rowspan="4">
+                            <img src="../images/huzhao.png" alt="">
+                        </td> -->
+                        <td colspan="2">
+                            <label for="">姓&emsp;名：</label>
+                            ${record.xm }
+                        </td>
+                        <td colspan="2">
+                            <label for="">学&emsp;校：</label>
+                            ${record.xx }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <label for="">性&emsp;别：</label>
+                            ${record.xb }
+                        </td>
+                        <td>
+                            <label for="">专&emsp;业：</label>
+                            ${record.zy }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <label for="">民&emsp;族：</label>
+                            ${record.mz }
+                        </td>
+                        <td>
+                            <label for="">电&emsp;话：</label>
+                            ${record.dh }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="">身份证：</label>
+                            ${record.sfz }
+                        </td>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="table-cell-box">
+                <div class="table-cell-box-title">
+                    <h3>其他信息</h3>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="">身&emsp;高：</label>
+                            ${record.sg }
+                        </td>
+                        <td>
+                            <label for="">体&emsp;重：</label>
+                            ${record.tz }
+                        </td>
+                        <td>
+                            <label for="">父亲姓名：</label>
+                            ${record.fqxm }
+                        </td>
+                        <td>
+                            <label for="">联系电话：</label>
+                            ${record.fqlxdh }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">胸&emsp;围：</label> ${record.xw }
+                        </td>
+                        <td>
+                            <label for="">腰&emsp;围：</label> ${record.yw }
+                        </td>
+                        <td>
+                            <label for="">母亲姓名：</label> ${record.mqxm }
+                        </td>
+                        <td>
+                            <label for="">联系电话：</label> ${record.mqlxdh }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">臀&emsp;围：</label> ${record.tw }
+                        </td>
+                        <td>
+                            <label for="">鞋&emsp;号：</label> ${record.xh }
+                        </td>
+                        <td colspan="2">
+                            <label for="">家庭地址：</label> ${record.jtdz }
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="table-cell-box">
+                <div class="table-cell-box-title">
+                    <h3>今年必考</h3>
+                </div>
+                <ul class="three">
+                    <li class="three-1">
+                        是否参加日语等级考试：<c:if test='${record.ryks eq "0"}'>是</c:if><c:if test='${record.ryks eq "1"}'>否</c:if>
+                    </li>
+                    <li class="three-2">
+                        是否参加英语四六级考试：<c:if test='${record.yyks eq "0"}'>是</c:if><c:if test='${record.yyks eq "1"}'>否</c:if>
+                    </li>
+                    <li class="three-3">
+                        是否参加研究生考试(仅限应届毕业生)：<c:if test='${record.yjsks eq "0"}'>是</c:if><c:if test='${record.yjsks eq "1"}'>否</c:if>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="table-cell-box">
+                <div class="table-cell-box-title">
+                    <h3>插入附件</h3>
+                </div>
+                <div class="img-list">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="submit" class="table-btn" onclick="window.open('<%=basePath %>uploadFile/${record.bmb }')" value="查看报名表单">
+                            </td>
+                            <td>
+                                <input type="submit" class="table-btn" onclick="window.open('<%=basePath %>uploadFile/${record.zlzg }')" value="查看在留资格">
+                            </td>
+                            <td>
+                                <input type="submit" class="table-btn" onclick="window.open('<%=basePath %>uploadFile/${record.hzzp }')" value="查看护照照片">
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <div class="btn-group">
+            <input type="submit" class="table-btn" onclick="tg('${record.id}')" value="通过">
+            <input type="submit" class="table-btn" onclick="xg('${record.dh}','${record.id}')" value="通知修改">
+        </div>
+
+    </div>
+<div id="tanchu1" style="display:none">
+	<textarea  id="remindCon1" rows="7" style="font-size:16px;" cols="40"></textarea>
+</div>
+</body>
+<script type="text/javascript">
+function tg(obj){
+layui.use(['jquery','layer'], function(){
+			 var $=layui.jquery;
+			 var layer = layui.layer;
+	$.ajax({
+		url:"<%=basePath%>xsxx/updatesta",
+		type:"post",
+		async:true,
+		dataType:"text",
+		data:{
+			id:obj
+		},
+		success:function(data){
+			layer.closeAll();
+			if(data=='1'){
+				layer.closeAll();
+				layer.msg("审核成功");
+				setTimeout("location.reload();",1500);
+			}else{
+				layer.msg("审核失败，请联系管理员");
+			}
+	    }
+	});
+	});
+	
+}
+
+</script>
+</html>

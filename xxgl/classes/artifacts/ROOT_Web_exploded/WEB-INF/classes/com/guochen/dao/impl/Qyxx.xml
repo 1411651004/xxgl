@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guochen.dao.QyxxDao">
+  <resultMap id="BaseResultMap" type="com.guochen.model.Qyxx">
+			<id column="id" jdbcType="INTEGER" property="id" />
+			<result column="type" jdbcType="VARCHAR" property="type" />
+			<result column="mc" jdbcType="VARCHAR" property="mc" />
+			<result column="cs" jdbcType="VARCHAR" property="cs" />
+			<result column="fzr" jdbcType="VARCHAR" property="fzr" />
+			<result column="lxfs" jdbcType="VARCHAR" property="lxfs" />
+			<result column="create_time" jdbcType="VARCHAR" property="createTime" />
+			<result column="byzd1" jdbcType="VARCHAR" property="byzd1" />
+			<result column="byzd2" jdbcType="VARCHAR" property="byzd2" />
+			<result column="byzd3" jdbcType="VARCHAR" property="byzd3" />
+			<result column="byzd4" jdbcType="VARCHAR" property="byzd4" />
+			<result column="byzd5" jdbcType="VARCHAR" property="byzd5" />
+			<result column="byzd6" jdbcType="VARCHAR" property="byzd6" />
+			<result column="byzd7" jdbcType="VARCHAR" property="byzd7" />
+			<result column="byzd8" jdbcType="VARCHAR" property="byzd8" />
+			<result column="byzd9" jdbcType="VARCHAR" property="byzd9" />
+			<result column="rymc" jdbcType="VARCHAR" property="rymc" />
+			<result column="sg" jdbcType="VARCHAR" property="sg" />
+			<result column="lq" jdbcType="VARCHAR" property="lq" />
+			<result column="yx" jdbcType="VARCHAR" property="yx" />
+			<result column="dz" jdbcType="VARCHAR" property="dz" />
+			<result column="bz" jdbcType="VARCHAR" property="bz" />
+			<result column="xscfyf" jdbcType="VARCHAR" property="xscfyf" />
+			
+			<result column="xyqsqk" jdbcType="VARCHAR" property="xyqsqk" />
+			<result column="yxtd" jdbcType="VARCHAR" property="yxtd" />
+			<result column="qtjg" jdbcType="VARCHAR" property="qtjg" />
+			<result column="fzls2" jdbcType="VARCHAR" property="fzls2" />
+			<result column="lxfs2" jdbcType="VARCHAR" property="lxfs2" />
+			<result column="yx2" jdbcType="VARCHAR" property="yx2" />
+			<result column="fzls3" jdbcType="VARCHAR" property="fzls3" />
+			<result column="lxfs3" jdbcType="VARCHAR" property="lxfs3" />
+			<result column="yx3" jdbcType="VARCHAR" property="yx3" />
+			<result column="ryzyrs" jdbcType="VARCHAR" property="ryzyrs" />
+			<result column="kcysj" jdbcType="VARCHAR" property="kcysj" />
+			<result column="dq" jdbcType="VARCHAR" property="dq" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+		id,
+		type,
+		mc,
+		cs,
+		fzr,
+		lxfs,
+		create_time,
+		byzd1,
+		byzd2,
+		byzd3,
+		byzd4,
+		byzd5,
+		byzd6,
+		byzd7,
+		byzd8,
+		byzd9,
+		rymc,
+		sg,
+		lq,
+		yx,
+		dz,
+		bz,
+		xscfyf,
+		xyqsqk,yxtd,qtjg,fzls2,lxfs2,yx2,fzls3,lxfs3,yx3,ryzyrs,kcysj,dq
+  </sql>
+  <sql id="Base_Where_Condition" >
+  		<if test="mc!=null and mc.trim().length()>0">
+			and mc like '%${mc}%'
+		</if>
+  		<if test="cs!=null and cs.trim().length()>0">
+			and cs like '%${cs}%'
+		</if>
+  		<if test="fzr!=null and fzr.trim().length()>0">
+			and fzr like '%${fzr}%'
+		</if>
+  		<if test="type!=null and type.trim().length()>0">
+			and type = '${type}'
+		</if>
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from qyxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>  
+  
+  <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.guochen.model.Qyxx">
+		select
+		<include refid="Base_Column_List" />
+		from qyxx 
+		where 1=1 
+		<include refid="Base_Where_Condition" />
+		order by id , create_time asc
+	</select>
+  	<select id="selectPageCount" resultType="long" parameterType="com.guochen.model.Qyxx">
+		select count(*) 
+		from qyxx
+		where 1=1 
+		<include refid="Base_Where_Condition" />
+	</select>
+  	<select id="selectByQyxx" resultType="com.guochen.model.Qyxx" parameterType="com.guochen.model.Qyxx">
+		select *
+		from qyxx
+		where 1=1 
+		<if test="id != null">
+			and id = #{id,jdbcType=INTEGER}
+		</if>
+		<if test="mc != null">
+			and mc = #{mc,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null">
+			and type = #{type,jdbcType=VARCHAR}
+		</if>
+	</select>
+  	<select id="selectByIds" resultType="com.guochen.model.Qyxx">
+		select 
+        <include refid="Base_Column_List" />
+		from qyxx
+		where id in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">  
+		 #{item}  
+		</foreach>
+		order by dq;
+	</select>
+  <insert id="insertSelective" parameterType="com.guochen.model.Qyxx">
+    insert into qyxx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+		  <if test="id != null">
+			id,
+		  </if>		
+		  <if test="type != null">
+			type,
+		  </if>		
+		  <if test="mc != null">
+			mc,
+		  </if>		
+		  <if test="cs != null">
+			cs,
+		  </if>		
+		  <if test="fzr != null">
+			fzr,
+		  </if>		
+		  <if test="lxfs != null">
+			lxfs,
+		  </if>		
+		  <if test="createTime != null">
+			create_time,
+		  </if>		
+		  <if test="byzd1 != null">
+			byzd1,
+		  </if>		
+		  <if test="byzd2 != null">
+			byzd2,
+		  </if>		
+		  <if test="byzd3 != null">
+			byzd3,
+		  </if>		
+		  <if test="byzd4 != null">
+			byzd4,
+		  </if>		
+		  <if test="byzd5 != null">
+			byzd5,
+		  </if>		
+		  <if test="byzd6 != null">
+			byzd6,
+		  </if>		
+		  <if test="byzd7 != null">
+			byzd7,
+		  </if>		
+		  <if test="byzd8 != null">
+			byzd8,
+		  </if>		
+		  <if test="byzd9 != null">
+			byzd9,
+		  </if>		
+		  <if test="rymc != null">
+			rymc,
+		  </if>		
+		  <if test="sg != null">
+			sg,
+		  </if>		
+		   <if test="lq != null">
+			lq,
+		  </if>	
+		   <if test="dz != null">
+			dz,
+		  </if>	
+		   <if test="yx != null">
+			yx,
+		  </if>	
+		   <if test="bz != null">
+			bz,
+		  </if>	
+		  <if test="xscfyf != null">
+			xscfyf,
+		  </if>	
+		  <if test="xyqsqk != null">
+		  xyqsqk,
+		  </if>	
+		  <if test="yxtd != null">
+		  yxtd,
+		  </if>	
+		  <if test="qtjg != null">
+		  qtjg,
+		  </if>	
+		  <if test="fzls2 != null">
+		  fzls2,
+		  </if>	
+		  <if test="lxfs2 != null">
+		  lxfs2,
+		  </if>	
+		  <if test="yx2 != null">
+		  yx2,
+		  </if>	
+		  <if test="fzls3 != null">
+		  fzls3,
+		  </if>	
+		  <if test="lxfs3 != null">
+		  lxfs3,
+		  </if>	
+		  <if test="yx3 != null">
+		  yx3,
+		  </if>	
+		  <if test="ryzyrz != null">
+		  ryzyrs,
+		  </if>	
+		  <if test="kcysj != null">
+		  kcysj,
+		  </if>	
+		  <if test="dq != null">
+		  dq,
+		  </if>	
+    </trim>  
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="mc != null">
+				#{mc,jdbcType=VARCHAR},
+			</if>
+			<if test="cs != null">
+				#{cs,jdbcType=VARCHAR},
+			</if>
+			<if test="fzr != null">
+				#{fzr,jdbcType=VARCHAR},
+			</if>
+			<if test="lxfs != null">
+				#{lxfs,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd1 != null">
+				#{byzd1,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd2 != null">
+				#{byzd2,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd3 != null">
+				#{byzd3,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd4 != null">
+				#{byzd4,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd5 != null">
+				#{byzd5,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd6 != null">
+				#{byzd6,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd7 != null">
+				#{byzd7,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd8 != null">
+				#{byzd8,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd9 != null">
+				#{byzd9,jdbcType=VARCHAR},
+			</if>
+			<if test="rymc != null">
+				#{rymc,jdbcType=VARCHAR},
+			</if>
+			<if test="sg != null">
+				#{sg,jdbcType=VARCHAR},
+			</if>
+			<if test="lq != null">
+				#{lq,jdbcType=VARCHAR},
+			</if>
+			<if test="yx != null">
+				#{yx,jdbcType=VARCHAR},
+			</if>
+			<if test="dz != null">
+				#{dz,jdbcType=VARCHAR},
+			</if>
+			<if test="bz != null">
+				#{bz,jdbcType=VARCHAR},
+			</if>
+			<if test="xscfyf != null">
+				#{xscfyf,jdbcType=VARCHAR},
+			</if>
+			
+			<if test="xyqsqk != null">
+			#{xyqsqk,jdbcType=VARCHAR},
+			</if>
+			<if test="yxtd != null">
+			#{yxtd,jdbcType=VARCHAR},
+			</if>
+			<if test="qtjg != null">
+			#{qtjg,jdbcType=VARCHAR},
+			</if>
+			<if test="fzls2 != null">
+			#{fzls2,jdbcType=VARCHAR},
+			</if>
+			<if test="lxfs2 != null">
+			#{lxfs2,jdbcType=VARCHAR},
+			</if>
+			<if test="yx2 != null">
+			#{yx2,jdbcType=VARCHAR},
+			</if>
+			<if test="fzls3 != null">
+			#{fzls3,jdbcType=VARCHAR},
+			</if>
+			<if test="lxfs3 != null">
+			#{lxfs3,jdbcType=VARCHAR},
+			</if>
+			<if test="yx3 != null">
+			#{yx3,jdbcType=VARCHAR},
+			</if>
+			<if test="ryzyrs != null">
+			#{ryzyrs,jdbcType=VARCHAR},
+			</if>
+			<if test="kcysj != null">
+			#{kcysj,jdbcType=VARCHAR},
+			</if>
+			<if test="dq != null">
+			#{dq,jdbcType=VARCHAR},
+			</if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.guochen.model.Qyxx">
+    update qyxx 
+    <set>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="mc != null">
+				mc = #{mc,jdbcType=VARCHAR},
+			</if>
+			<if test="cs != null">
+				cs = #{cs,jdbcType=VARCHAR},
+			</if>
+			<if test="fzr != null">
+				fzr = #{fzr,jdbcType=VARCHAR},
+			</if>
+			<if test="lxfs != null">
+				lxfs = #{lxfs,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd1 != null">
+				byzd1 = #{byzd1,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd2 != null">
+				byzd2 = #{byzd2,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd3 != null">
+				byzd3 = #{byzd3,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd4 != null">
+				byzd4 = #{byzd4,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd5 != null">
+				byzd5 = #{byzd5,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd6 != null">
+				byzd6 = #{byzd6,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd7 != null">
+				byzd7 = #{byzd7,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd8 != null">
+				byzd8 = #{byzd8,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd9 != null">
+				byzd9 = #{byzd9,jdbcType=VARCHAR},
+			</if>
+			<if test="rymc != null">
+				rymc = #{rymc,jdbcType=VARCHAR},
+			</if>
+			<if test="sg != null">
+				sg = #{sg,jdbcType=VARCHAR},
+			</if>
+			<if test="lq != null">
+				lq = #{lq,jdbcType=VARCHAR},
+			</if>
+			<if test="yx != null">
+				yx = #{yx,jdbcType=VARCHAR},
+			</if>
+			<if test="dz != null">
+				dz = #{dz,jdbcType=VARCHAR},
+			</if>
+			<if test="bz != null">
+				bz = #{bz,jdbcType=VARCHAR},
+			</if>
+			<if test="xscfyf != null">
+				xscfyf = #{xscfyf,jdbcType=VARCHAR},
+			</if>
+			
+			<if test="xyqsqk != null">
+			xyqsqk=#{xyqsqk,jdbcType=VARCHAR},
+			</if>
+			<if test="yxtd != null">
+			yxtd=#{yxtd,jdbcType=VARCHAR},
+			</if>
+			<if test="qtjg != null">
+			qtjg=#{qtjg,jdbcType=VARCHAR},
+			</if>
+			<if test="fzls2 != null">
+			fzls2=#{fzls2,jdbcType=VARCHAR},
+			</if>
+			<if test="lxfs2 != null">
+			lxfs2=#{lxfs2,jdbcType=VARCHAR},
+			</if>
+			<if test="yx2 != null">
+			yx2=#{yx2,jdbcType=VARCHAR},
+			</if>
+			<if test="fzls3 != null">
+			fzls3=#{fzls3,jdbcType=VARCHAR},
+			</if>
+			<if test="lxfs3 != null">
+			lxfs3=#{lxfs3,jdbcType=VARCHAR},
+			</if>
+			<if test="yx3 != null">
+			yx3=#{yx3,jdbcType=VARCHAR},
+			</if>
+			<if test="ryzyrs != null">
+			ryzyrs=#{ryzyrs,jdbcType=VARCHAR},
+			</if>
+			<if test="kcysj != null">
+			kcysj=#{kcysj,jdbcType=VARCHAR},
+			</if>
+			<if test="dq != null">
+			dq=#{dq,jdbcType=VARCHAR},
+			</if>
+   
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>  
+  </mapper>

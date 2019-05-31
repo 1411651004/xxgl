@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//WebRoot/index.jsp=UTF-8
+encoding//WebRoot/larrycms-master/admin/com/getBakList.jsp=UTF-8
+encoding//WebRoot/larrycms-master/admin/common/page-ajax.jsp=UTF-8
+encoding//WebRoot/larrycms-master/admin/notice/add.jsp=UTF-8
+encoding//WebRoot/larrycms-master/admin/project/NewProject.jsp=UTF-8
+encoding//WebRoot/larrycms-master/admin/project/getList.jsp=UTF-8
+encoding//WebRoot/larrycms-master/admin/project/list.jsp=UTF-8
+encoding//WebRoot/login.jsp=UTF-8
+encoding//WebRoot/static/css/layui.css=UTF-8
+encoding//src/com/guochen/controller/UserController.java=UTF-8
+encoding//src/com/guochen/utils/CommonUtils.java=GBK
+encoding/<project>=UTF-8

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc   
+http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 启动注解，注册服务，如验证框架、全局类型转换器-->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<!-- 启动自动扫描 -->
+	<context:component-scan base-package="com.guochen">
+	<!-- 制定扫包规则 ,只扫描使用@Controller注解的JAVA类 -->
+	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	
+	<!-- 配置视图解析器 -->
+	<mvc:resources mapping="/stulogin/**" location="/stulogin/" cache-period="31556926" />
+	<mvc:resources mapping="/stulogin/css/**" location="/stulogin/css/" cache-period="31556926" />
+	<mvc:resources mapping="/stulogin/js/**" location="/stulogin/js/" cache-period="31556926" />
+	<mvc:resources mapping="/stulogin/less/**" location="/stulogin/less/" cache-period="31556926" />
+	<mvc:resources mapping="/stulogin/images/**" location="/stulogin/images/" cache-period="31556926" />
+	<mvc:resources mapping="/stulogin/html/**" location="/stulogin/html/" cache-period="31556926" />
+	<mvc:resources mapping="/stuinfo/**" location="/stuinfo/" cache-period="31556926" />
+	<mvc:resources mapping="/static/images/**" location="/static/images/" cache-period="31556926" />
+	<mvc:resources mapping="/static/js/**" location="/static/js/" cache-period="31556926" />
+	<mvc:resources mapping="/static/css/**" location="/static/css/" cache-period="31556926" />
+	<mvc:resources mapping="/static/font/**" location="/static/font/" cache-period="31556926" />
+	<mvc:resources mapping="/static/divfont/**" location="/static/divfont/" cache-period="31556926" />
+	<mvc:resources mapping="/uploadFile/**" location="/uploadFile/" cache-period="31556926" />
+	<mvc:resources mapping="/zip/**" location="/zip/" cache-period="31556926" />
+	<mvc:resources mapping="/static/lay/**" location="/static/lay" cache-period="31556926" />
+	<mvc:resources mapping="/static/**" location="/static" cache-period="31556926" />
+	<mvc:resources mapping="/larrycms-master/**" location="/larrycms-master/" cache-period="31556926" />
+	<mvc:resources mapping="/larrycms-master/common/font/**" location="/larrycms-master/common/font/" cache-period="31556926" />
+	<mvc:resources mapping="/larrycms-master/admin/**" location="/larrycms-master/admin/" cache-period="31556926" />
+    <!--
+   	prefix和suffix：查找视图页面的前缀和后缀（前缀[逻辑视图名]后缀），
+   	比如传进来的逻辑视图名为WEB-INF/jsp/hello，则该该jsp视图页面应该存放在“WEB-INF/jsp/hello.jsp”； -->
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/larrycms-master/admin"></property> <!-- 我这里的视图直接放在WebRoot下的 -->
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+	</bean>
+	    <bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+	        <list>  
+	            <value>classpath:*.properties</value>  
+	        </list>  
+	    </property> 
+    </bean>  
+</beans>

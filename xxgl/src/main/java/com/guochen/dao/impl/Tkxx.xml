@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guochen.dao.TkxxDao">
+  <resultMap id="BaseResultMap" type="com.guochen.model.Tkxx">
+			<id column="id" jdbcType="INTEGER" property="id" />
+			<result column="xm" jdbcType="VARCHAR" property="xm" />
+			<result column="sfz" jdbcType="VARCHAR" property="sfz" />
+			<result column="tkyh" jdbcType="VARCHAR" property="tkyh" />
+			<result column="fhxx" jdbcType="VARCHAR" property="fhxx" />
+			<result column="tkzh" jdbcType="VARCHAR" property="tkzh" />
+			<result column="hm" jdbcType="VARCHAR" property="hm" />
+			<result column="je" jdbcType="VARCHAR" property="je" />
+			<result column="sjr" jdbcType="VARCHAR" property="sjr" />
+			<result column="sjh" jdbcType="VARCHAR" property="sjh" />
+			<result column="dz" jdbcType="VARCHAR" property="dz" />
+			<result column="byzd1" jdbcType="VARCHAR" property="byzd1" />
+			<result column="byzd2" jdbcType="VARCHAR" property="byzd2" />
+			<result column="byzd3" jdbcType="VARCHAR" property="byzd3" />
+			<result column="byzd4" jdbcType="VARCHAR" property="byzd4" />
+			<result column="byzd5" jdbcType="VARCHAR" property="byzd5" />
+			<result column="byzd6" jdbcType="VARCHAR" property="byzd6" />
+			<result column="byzd7" jdbcType="VARCHAR" property="byzd7" />
+			<result column="byzd8" jdbcType="VARCHAR" property="byzd8" />
+			<result column="byzd9" jdbcType="VARCHAR" property="byzd9" />
+			<result column="byzd10" jdbcType="VARCHAR" property="byzd10" />
+			<result column="create_time" jdbcType="VARCHAR" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+		id,
+		xm,
+		sfz,
+		tkyh,
+		fhxx,
+		tkzh,
+		hm,
+		je,
+		sjr,
+		sjh,
+		dz,
+		byzd1,
+		byzd2,
+		byzd3,
+		byzd4,
+		byzd5,
+		byzd6,
+		byzd7,
+		byzd8,
+		byzd9,
+		byzd10,
+		create_time
+  </sql>
+  <sql id="Base_Where_Condition" >
+  <if test="sfz!=null and sfz.trim().length()>0">
+			and sfz = '${sfz}'
+		</if>
+		<if test="xm!=null and xm.trim().length()>0">
+			and xm like '%${xm}%'
+		</if>
+  		<if test="byzd1!=null and byzd1.trim().length()>0">
+			and byzd1 like '%${byzd1}%'
+		</if>
+  </sql>
+  <select id="selectByExample" parameterType="com.guochen.model.Tkxx" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tkxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="limitStart > -1">
+      limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>  
+  <sql id="Example_Where_Clause"></sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tkxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>  
+  
+  <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.guochen.model.Tkxx">
+		select
+		<include refid="Base_Column_List" />
+		from tkxx 
+		where 1=1 
+		<include refid="Base_Where_Condition" />
+		order by create_time desc
+	</select>
+  	<select id="selectPageCount" resultType="long" parameterType="com.guochen.model.Tkxx">
+		select count(*) 
+		from tkxx
+		where 1=1 
+		<include refid="Base_Where_Condition" />
+	</select>
+  <insert id="insertSelective" parameterType="com.guochen.model.Tkxx">
+    insert into tkxx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+		  <if test="id != null">
+			id,
+		  </if>		
+		  <if test="xm != null">
+			xm,
+		  </if>		
+		  <if test="sfz != null">
+			sfz,
+		  </if>		
+		  <if test="tkyh != null">
+			tkyh,
+		  </if>		
+		  <if test="fhxx != null">
+			fhxx,
+		  </if>		
+		  <if test="tkzh != null">
+			tkzh,
+		  </if>		
+		  <if test="hm != null">
+			hm,
+		  </if>		
+		  <if test="je != null">
+			je,
+		  </if>		
+		  <if test="sjr != null">
+			sjr,
+		  </if>		
+		  <if test="sjh != null">
+			sjh,
+		  </if>		
+		  <if test="dz != null">
+			dz,
+		  </if>		
+		  <if test="byzd1 != null">
+			byzd1,
+		  </if>		
+		  <if test="byzd2 != null">
+			byzd2,
+		  </if>		
+		  <if test="byzd3 != null">
+			byzd3,
+		  </if>		
+		  <if test="byzd4 != null">
+			byzd4,
+		  </if>		
+		  <if test="byzd5 != null">
+			byzd5,
+		  </if>		
+		  <if test="byzd6 != null">
+			byzd6,
+		  </if>		
+		  <if test="byzd7 != null">
+			byzd7,
+		  </if>		
+		  <if test="byzd8 != null">
+			byzd8,
+		  </if>		
+		  <if test="byzd9 != null">
+			byzd9,
+		  </if>		
+		  <if test="byzd10 != null">
+			byzd10,
+		  </if>		
+		  <if test="createTime != null">
+			create_time,
+		  </if>		
+    </trim>  
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="xm != null">
+				#{xm,jdbcType=VARCHAR},
+			</if>
+			<if test="sfz != null">
+				#{sfz,jdbcType=VARCHAR},
+			</if>
+			<if test="tkyh != null">
+				#{tkyh,jdbcType=VARCHAR},
+			</if>
+			<if test="fhxx != null">
+				#{fhxx,jdbcType=VARCHAR},
+			</if>
+			<if test="tkzh != null">
+				#{tkzh,jdbcType=VARCHAR},
+			</if>
+			<if test="hm != null">
+				#{hm,jdbcType=VARCHAR},
+			</if>
+			<if test="je != null">
+				#{je,jdbcType=VARCHAR},
+			</if>
+			<if test="sjr != null">
+				#{sjr,jdbcType=VARCHAR},
+			</if>
+			<if test="sjh != null">
+				#{sjh,jdbcType=VARCHAR},
+			</if>
+			<if test="dz != null">
+				#{dz,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd1 != null">
+				#{byzd1,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd2 != null">
+				#{byzd2,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd3 != null">
+				#{byzd3,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd4 != null">
+				#{byzd4,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd5 != null">
+				#{byzd5,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd6 != null">
+				#{byzd6,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd7 != null">
+				#{byzd7,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd8 != null">
+				#{byzd8,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd9 != null">
+				#{byzd9,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd10 != null">
+				#{byzd10,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.guochen.model.Tkxx">
+    update tkxx 
+    <set>
+			<if test="id != null">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="xm != null">
+				xm = #{xm,jdbcType=VARCHAR},
+			</if>
+			<if test="sfz != null">
+				sfz = #{sfz,jdbcType=VARCHAR},
+			</if>
+			<if test="tkyh != null">
+				tkyh = #{tkyh,jdbcType=VARCHAR},
+			</if>
+			<if test="fhxx != null">
+				fhxx = #{fhxx,jdbcType=VARCHAR},
+			</if>
+			<if test="tkzh != null">
+				tkzh = #{tkzh,jdbcType=VARCHAR},
+			</if>
+			<if test="hm != null">
+				hm = #{hm,jdbcType=VARCHAR},
+			</if>
+			<if test="je != null">
+				je = #{je,jdbcType=VARCHAR},
+			</if>
+			<if test="sjr != null">
+				sjr = #{sjr,jdbcType=VARCHAR},
+			</if>
+			<if test="sjh != null">
+				sjh = #{sjh,jdbcType=VARCHAR},
+			</if>
+			<if test="dz != null">
+				dz = #{dz,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd1 != null">
+				byzd1 = #{byzd1,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd2 != null">
+				byzd2 = #{byzd2,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd3 != null">
+				byzd3 = #{byzd3,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd4 != null">
+				byzd4 = #{byzd4,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd5 != null">
+				byzd5 = #{byzd5,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd6 != null">
+				byzd6 = #{byzd6,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd7 != null">
+				byzd7 = #{byzd7,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd8 != null">
+				byzd8 = #{byzd8,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd9 != null">
+				byzd9 = #{byzd9,jdbcType=VARCHAR},
+			</if>
+			<if test="byzd10 != null">
+				byzd10 = #{byzd10,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=VARCHAR},
+			</if>
+   
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>  
+    <select id="selectByTkxx" resultMap="BaseResultMap" parameterType="com.guochen.model.Tkxx">
+		select
+		<include refid="Base_Column_List" />
+		from Tkxx 
+		where 1=1 
+		<include refid="Base_Where_Condition" />
+		order by create_time desc
+	</select>
+	
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.guochen.model.Tkxx">
+		select
+		<include refid="Base_Column_List" />
+		from Tkxx 
+		order by create_time desc
+	</select>
+  </mapper>

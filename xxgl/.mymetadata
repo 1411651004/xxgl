@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="hdxy"
+  id="myeclipse.1482732525966"
+  context-root="/hdxy"
+  j2ee-spec="6.0"
+  archive="hdxy.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

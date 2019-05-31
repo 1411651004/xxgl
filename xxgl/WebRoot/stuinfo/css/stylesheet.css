@@ -1,0 +1,136 @@
+@charset 'utf-8';
+
+body, h1, h2, h3, input, button ,p {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+}
+
+a , img , button , input {
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+}
+
+html {
+    font-size: 20px;
+    line-height: 1;
+}
+
+html, body, .page-section {
+    height: 100%;
+    background: #e3f3ff;
+}
+
+.header {
+    height: 10.7rem;
+    color: #fff;
+    background: #4da0d4;
+    overflow: hidden;
+    text-align: center;
+}
+
+.header img {
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    margin: 1.3rem auto .7rem;
+}
+
+.header h2 {
+    font-size: 1.2rem;
+    margin-bottom: .45rem;
+}
+
+.header h3 {
+    font-size: .9rem;
+}
+
+.form-group {
+    position: relative;
+    display: flex;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    padding: 0 .75rem;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.form-group input ,
+.form-group button {
+    border: 0;
+    flex: 1;
+}
+
+.form-group.error {
+    border-bottom-color: red;
+}
+
+.form-group label {
+    width: 4em;
+    margin-right: 1em;
+    font-size: .7rem;
+    color: #4da0d4;
+}
+
+.form-group > button {
+    position: absolute;
+    right: .3rem;
+    top: .3rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    width: 4rem;
+    font-size: .6rem;
+    color: #fff;
+    text-align: center;
+    background: #3399fe;
+    transition: all .3s;
+}
+
+.form-group > button:disabled {
+    color: #333;
+    background: #e5e5e5;
+}
+
+.form-submit {
+    display: block;
+    margin: .5rem auto;
+    width: 14.9rem;
+    height: 2.3rem;
+    line-height: 2.3rem;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 1.15rem;
+    border-width: 0;
+    background: #3399fe;
+    font-size: .8rem;
+    letter-spacing: .1rem;
+}
+
+.desc {
+    width: 14rem;
+    margin: 1rem auto;
+    font-size: .6rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+@media screen and (max-width:320px) { html{ font-size:20px !important;} }
+@media screen and (min-width:320px) { html{ font-size:20px;} }
+/* @media screen and (min-width:340px) { html{ font-size:21.25px;} } */
+/* @media screen and (min-width:360px) { html{ font-size:22.5px;} } */
+@media screen and (min-width:380px) { html{ font-size:23.75px;} }
+@media screen and (min-width:400px) { html{ font-size:25px;} }
+@media screen and (min-width:440px) { html{ font-size:27.5px;} }
+@media screen and (min-width:480px) { html{ font-size:30px;} }
+@media screen and (min-width:520px) { html{ font-size:32.5px;} }
+@media screen and (min-width:560px) { html{ font-size:35px;} }
+@media screen and (min-width:600px) { html{ font-size:37.5px;} }
+@media screen and (min-width:640px) { html{ font-size:40px !important;} }

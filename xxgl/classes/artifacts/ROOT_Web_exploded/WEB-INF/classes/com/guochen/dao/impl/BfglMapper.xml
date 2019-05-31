@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guochen.dao.BfglDao">
+	<resultMap id="BaseResultMap" type="com.guochen.model.Bfgl">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="qyxx_id" jdbcType="INTEGER" property="qyxxId" />
+		<result column="xxqk" jdbcType="VARCHAR" property="xxqk" />
+		<result column="zysj" jdbcType="VARCHAR" property="zysj" />
+		<result column="tjrs" jdbcType="INTEGER" property="tjrs" />
+		<result column="sfxj" jdbcType="VARCHAR" property="sfxj" />
+		<result column="bfsj" jdbcType="VARCHAR" property="bfsj" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		qyxx_id,
+		xxqk,
+		zysj,
+		tjrs,
+		sfxj,
+		bfsj
+	</sql>
+	<sql id="Base_Where_Condition" >
+  		<if test="id!=null">
+			and id = '${id}'
+		</if>
+  		<if test="qyxxId!=null">
+			and qyxx_id = '${qyxxId}'
+		</if>
+  		<if test="tjrs!=null">
+			and tjrs = '${tjrs}'
+		</if>
+  		<if test="xxqk!=null and xxqk.trim().length()>0">
+			and xxqk = '${xxqk}'
+		</if>
+  		<if test="zysj!=null and zysj.trim().length()>0">
+			and zysj = '${zysj}'
+		</if>
+  		<if test="sfxj!=null and sfxj.trim().length()>0">
+			and sfxj = '${sfxj}'
+		</if>
+  		<if test="bfsj!=null and bfsj.trim().length()>0">
+			and bfsj = '${bfsj}'
+		</if>
+  </sql>
+	<select id="selectByBfgl" parameterType="com.guochen.model.Bfgl"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bfgl where 1=1
+		<if test="_parameter != null">
+			<include refid="Base_Where_Condition" />
+		</if>
+		order by bfsj
+	</select>
+	<update id="updateByPrimaryKey" parameterType="com.guochen.model.Bfgl">
+		update bfgl 
+    <set>
+  		<if test="qyxxId!=null">
+			qyxx_id = #{qyxxId,jdbcType=INTEGER},
+		</if>
+  		<if test="tjrs!=null">
+			tjrs = #{tjrs,jdbcType=INTEGER},
+		</if>
+  		<if test="xxqk!=null">
+			xxqk = #{xxqk,jdbcType=VARCHAR},
+		</if>
+  		<if test="zysj!=null">
+			zysj = #{zysj,jdbcType=VARCHAR},
+		</if>
+  		<if test="sfxj!=null">
+			sfxj = #{sfxj,jdbcType=VARCHAR},
+		</if>
+  		<if test="bfsj!=null">
+			bfsj = #{bfsj,jdbcType=VARCHAR},
+		</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<insert id="insertSelective" parameterType="com.guochen.model.Bfgl">
+    insert into bfgl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+		  <if test="id != null">
+			id,
+		  </if>		
+		  <if test="qyxxId != null">
+			qyxx_id,
+		  </if>		
+		  <if test="tjrs != null">
+			tjrs,
+		  </if>		
+		  <if test="xxqk != null">
+			xxqk,
+		  </if>		
+		  <if test="zysj != null">
+			zysj,
+		  </if>		
+		  <if test="sfxj != null">
+			sfxj,
+		  </if>		
+		  <if test="bfsj != null">
+			bfsj,
+		  </if>	
+    </trim>  
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="id != null">
+			#{id,jdbcType=INTEGER},
+		</if>
+		<if test="qyxxId!=null">
+			#{qyxxId,jdbcType=INTEGER},
+		</if>
+  		<if test="tjrs!=null">
+			#{tjrs,jdbcType=INTEGER},
+		</if>
+  		<if test="xxqk!=null">
+			#{xxqk,jdbcType=VARCHAR},
+		</if>
+  		<if test="zysj!=null">
+			#{zysj,jdbcType=VARCHAR},
+		</if>
+  		<if test="sfxj!=null">
+			#{sfxj,jdbcType=VARCHAR},
+		</if>
+  		<if test="bfsj!=null">
+			#{bfsj,jdbcType=VARCHAR},
+		</if>
+    </trim>
+  </insert>
+</mapper>

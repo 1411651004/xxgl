@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guochen.dao.XtglDao">
+	<resultMap id="BaseResultMap" type="com.guochen.model.Xtgl">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="codevalue" jdbcType="VARCHAR" property="codevalue" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		code,
+		codevalue
+	</sql>
+	<sql id="Example_Where_Clause">
+	</sql>
+	<sql id="Base_Where_Condition">
+	</sql>
+	<select id="selectByExample" parameterType="com.guochen.model.Xtgl"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from xtgl
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="limitStart > -1">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from xtgl
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<select id="selectPageList" resultMap="BaseResultMap"
+		parameterType="com.guochen.model.Xtgl">
+		select
+		<include refid="Base_Column_List" />
+		from xtgl
+		where 1=1
+		<include refid="Base_Where_Condition" />
+	</select>
+	<select id="selectPageCount" resultType="long" parameterType="com.guochen.model.Xtgl">
+		select count(*)
+		from xtgl
+		where 1=1
+		<include refid="Base_Where_Condition" />
+	</select>
+	<insert id="insertSelective" parameterType="com.guochen.model.Xtgl">
+		insert into xtgl
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="codevalue != null">
+				codevalue,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INT},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="codevalue != null">
+				#{codevalue,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.guochen.model.Xtgl">
+		update xtgl
+		<set>
+			<if test="id != null">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="codevalue != null">
+				codevalue = #{codevalue,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByXtgl" resultMap="BaseResultMap" parameterType="com.guochen.model.Xtgl">
+		select
+		<include refid="Base_Column_List" />
+		from xtgl
+		where 1=1
+		<if test="id != null">
+			and id = #{id,jdbcType=INTEGER}
+		</if>
+		<if test="code != null">
+			and code = #{code,jdbcType=VARCHAR}
+		</if>
+		<if test="codevalue != null">
+			and codevalue = #{codevalue,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="getAllQuarters" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from xtgl
+		where code='jd'
+	</select>
+	<select id="getQuarterByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from xtgl
+		where code='jd' and codevalue like '%${_parameter}%'
+	</select>
+</mapper>
