@@ -298,7 +298,10 @@ request.setCharacterEncoding("UTF-8");
 									</div>
 							    </div>
 							  </div>
-							  <%-- 报名表
+
+
+
+							  <%-- 报名表--%>
 							  <div class="layui-colla-item">
 							    <h4 class="layui-colla-title">报名表（请先下载报名表模板进行填写）</h4>
 							    <div class="layui-colla-content layui-show">
@@ -307,18 +310,22 @@ request.setCharacterEncoding("UTF-8");
 							    	<a href="<%=basePath %>uploadFile/${record.bmb}" class="layui-btn">报名表</a>下载后请去掉文件名的后六位<br>
 							    	</c:if>
 							    	<br>
+									<%--<div class="layui-upload-drag" id="scbmb">
+										<i class="layui-icon"></i>
+										<p>点击上传，或将文件拖拽到此处</p>
+									</div>--%>
 							    	<div class="layui-upload-drag" id="scbmb" style="margin-top:10px">
 									  <i class="layui-icon"></i>
 									  <p id="wa">点击上传，或将文件拖拽到此处</p>
 									</div>
 									<input type="hidden" name="bmb" id="bmb" value="${record.bmb }">
 									<input type="hidden" name="flag" id="flag" value="2">
-									
+
 							    </div>
 						    </div>
-							   
-							   --%>
-							  
+
+
+
 							  <div class="layui-colla-item">
 							    <h4 class="layui-colla-title">家庭信息 （如果为空，请填写无）</h4>
 							    <div class="layui-colla-content layui-show">
@@ -597,13 +604,51 @@ layui.config({
 });
 
 
+// layui.use('upload', function(){
+//     var upload = layui.upload;
+//
+//     //执行实例
+//     var uploadInst = upload.render({
+//         elem: '#test10' //绑定元素
+//         ,url: '/upload/' //上传接口
+//         ,done: function(res){
+//             //上传完毕回调
+//         }
+//         ,error: function(){
+//             //请求异常回调
+//         }
+//     });
+//
+// });
+
 layui.use(['jquery','layer','form','element','laydate','upload'], function(){
 	var $ = layui.jquery;
 	var form = layui.form;
 	var element = layui.element;
 	var layer = layui.layer;
 	var laydate = layui.laydate;
-	
+    var upload = layui.upload;
+
+    upload.render({
+        elem: '#scbmb',
+        url:'<%=basePath%>xsxx/fileUpload4json',
+        accept:'file',
+        exts:'doc|docx'
+        ,done: function(res, index, upload){
+            if(res.code==0){
+                var item = this.item;
+                layer.closeAll('loading');
+                layer.msg(res.msg);
+                $("#bmb").val(res.filename);
+                $("#wa").text("文件上传成功！");
+            }else if(res.code!=0){
+                layer.closeAll('loading');
+                layer.msg(res.msg);
+            }
+        }
+    });
+
+
 	form.verify({
 	    fatherNumber : function(value, item){
 	    	if("无" == $("#fqxm").val()) {
@@ -630,8 +675,8 @@ layui.use(['jquery','layer','form','element','laydate','upload'], function(){
 	    	}
 	    }
 	});
-	
-	
+
+
 	
 	var sfyjs="${record.sfyjs }";
 	

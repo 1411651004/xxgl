@@ -123,6 +123,7 @@ public class XsxxController {
 				result.element("msg", "生成文件成功。");
 				return result.toString();
 			} catch (Exception e) {
+				e.printStackTrace();
 				result.element("status", "error");
 				result.element("msg", "生成文件失败。");
 			}

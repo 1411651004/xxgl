@@ -69,6 +69,10 @@
   <filter>
     <filter-name>loginFilter</filter-name>
     <filter-class>com.guochen.filter.LoginFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>loginFilter</filter-name>
